@@ -23,7 +23,8 @@ let postComponent = Vue.extend({
       <div class="comments">\
         <ul>\
           <li v-for="comment in comments">\
-              <p class="accept-line">{{ comment.text }}</p>\
+            <strong>{{ comment.userID }} </strong>\
+            <p class="accept-line">{{ comment.text }}</p>\
           </li>\
         </ul>\
         <form @submit.prevent="addComment">\
@@ -61,9 +62,11 @@ let app = new Vue({
       text: 'iizo!',
       image: '',
       comments: [{
+        userID: 'cat',
         text: 'コメント１'
       },
       {
+        userID: 'dog',
         text: 'コメント２'
       }],
       posted_at: '2019/01/16 15:19:20'
@@ -107,6 +110,8 @@ let app = new Vue({
       reader.readAsDataURL(files[0]);
     },
     addCommentToPost: function (index, comment) {
+      comment.userID = this.userID;
+      console.log(comment.userID);
       this.posts[index].comments.push(comment);
     }
   }

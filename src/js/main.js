@@ -108,13 +108,11 @@ let app = new Vue({
       let reader = new FileReader();
       reader.onload = (e) => {
         this.newImage = e.target.result;
-        // console.log(this.newImage)
       };
       reader.readAsDataURL(files[0]);
     },
     addCommentToPost: function (index, comment) {
       comment.userID = this.userID;
-      console.log(comment.userID);
       this.posts[index].comments.push(comment);
     }
   }

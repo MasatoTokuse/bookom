@@ -2,20 +2,20 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>Bookom</title>
+        <title>Bookom(仮)</title>
         <link rel="stylesheet" href="../src/css/styles.css">
     </head>
     <body>
         <div id="app" class="container">
-            <h1>Bookom</h1>
+            <h1>Bookom(仮)</h1>
             <form @submit.prevent="addPost">
-                <input type="text" v-model="newPost">
+                <textarea v-model="newPost"></textarea>
                 <input type="submit" value="投稿"><br>
                 <input type="file" name="image" @change="onFileChange" accept="image/*">
             </form>
             <ul>
                 <post-component 
-                    v-for="(post, index) in posts" 
+                    v-for="(post, index) in posts"
                     v-bind="post"
                     :key="index" 
                     :index="index"

@@ -15,15 +15,15 @@ let postComponent = Vue.extend({
   template: '\
     <li>\
       <img :src="image">\
-      <p>{{ text }}</p>\
+      <p class="accept-line">{{ text }}</p>\
       <div class="comments">\
         <ul>\
           <li v-for="comment in comments">\
-              <p>{{ comment.text }}</p>\
+              <p class="accept-line">{{ comment.text }}</p>\
           </li>\
         </ul>\
         <form @submit.prevent="addComment">\
-          <input type="text" v-model="newComment">\
+          <textarea v-model="newComment"></textarea>\
           <input type="submit" value="投稿"><br>\
         </form>\
       </div>\
@@ -31,6 +31,9 @@ let postComponent = Vue.extend({
   ',
   methods: {
     addComment: function () {
+      if (this.newComment == '') {
+        return
+      }
       let commentItem = {
         text: this.newComment
       }
@@ -63,6 +66,9 @@ let app = new Vue({
   },
   methods: {
     addPost: function () {
+      if (this.newPost == '') {
+        return
+      }
       let postItem = {
         text: this.newPost,
         image: this.newImage,

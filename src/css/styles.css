@@ -15,7 +15,7 @@ body {
 }
 
 #app li {
-    line-height:1.5;
+    line-height: 1.5;
 }
 
 #app input[type="text"] {
@@ -24,7 +24,7 @@ body {
 
 .command {
     font-size: 10;
-    cursor:pointer;
+    cursor: pointer;
     color: #08c;
 }
 
@@ -35,4 +35,13 @@ body {
 
 .comments {
     margin-left: 25px;
+}
+
+textarea {
+    resize: none;
+}
+
+.accept-line {
+    white-space:pre-wrap; 
+    word-wrap:break-word;
 }

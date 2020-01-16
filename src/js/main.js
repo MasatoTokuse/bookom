@@ -24,6 +24,7 @@ let postComponent = Vue.extend({
         <ul>\
           <li v-for="comment in comments">\
             <strong>{{ comment.userID }} </strong>\
+            {{ comment.created_at }}<br>\
             <p class="accept-line">{{ comment.text }}</p>\
           </li>\
         </ul>\
@@ -40,7 +41,8 @@ let postComponent = Vue.extend({
         return
       }
       let commentItem = {
-        text: this.newComment
+        text: this.newComment,
+        created_at: getNowDateString()
       };
       this.$emit('add-comment', this.index, commentItem);
 
@@ -63,11 +65,13 @@ let app = new Vue({
       image: '',
       comments: [{
         userID: 'cat',
-        text: 'コメント１'
+        text: 'コメント１',
+        created_at: '2019/01/16 16:19:20'
       },
       {
         userID: 'dog',
-        text: 'コメント２'
+        text: 'コメント２',
+        created_at: '2019/01/16 17:19:20'
       }],
       posted_at: '2019/01/16 15:19:20'
     }]
@@ -84,7 +88,6 @@ let app = new Vue({
         return
       }
       let posted_at = getNowDateString();
-      // console.log(posted_at);
       let postItem = {
         userID: this.userID,
         text: this.newPost,

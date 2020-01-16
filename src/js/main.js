@@ -7,7 +7,7 @@ let postComponent = Vue.extend({
     text: String,
     image: String,
     comments: Array,
-    posted_at: String
+    created_at: String
   },
   data: function () {
     return {
@@ -17,7 +17,7 @@ let postComponent = Vue.extend({
   template: '\
     <li class="post">\
       <strong>投稿者 : {{ userID }} </strong>\
-      {{ posted_at }}<br>\
+      {{ created_at }}<br>\
       <img class="image" :src="image"><br>\
       <p class="accept-line">{{ text }}</p>\
       <div class="comments">\
@@ -73,7 +73,7 @@ let app = new Vue({
         text: 'コメント２',
         created_at: '2019/01/16 17:19:20'
       }],
-      posted_at: '2019/01/16 15:19:20'
+      created_at: '2019/01/16 15:19:20'
     }]
   },
   components: {
@@ -87,13 +87,12 @@ let app = new Vue({
       if (this.newPost == '') {
         return
       }
-      let posted_at = getNowDateString();
       let postItem = {
         userID: this.userID,
         text: this.newPost,
         image: this.newImage,
         comments: [],
-        posted_at: posted_at
+        created_at: getNowDateString()
       };
       // 新着順に表示するため、配列の先頭に追加する
       this.posts.unshift(postItem);

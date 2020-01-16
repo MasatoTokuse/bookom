@@ -36,11 +36,11 @@ let postComponent = Vue.extend({
       }
       let commentItem = {
         text: this.newComment
-      }
-      this.$emit('add-comment', this.index, commentItem)
+      };
+      this.$emit('add-comment', this.index, commentItem);
 
       // 投稿フォームのクリア
-      this.newComment = ''
+      this.newComment = '';
     }
   }
 });
@@ -48,6 +48,8 @@ let postComponent = Vue.extend({
 let app = new Vue({
   el: '#app',
   data: {
+    isLogged: false,
+    userID: '',
     newPost: '',
     newImage: '',
     posts: [{
@@ -65,6 +67,9 @@ let app = new Vue({
     'post-component': postComponent
   },
   methods: {
+    login: function () {
+      this.isLogged = true;
+    },
     addPost: function () {
       if (this.newPost == '') {
         return
@@ -73,12 +78,12 @@ let app = new Vue({
         text: this.newPost,
         image: this.newImage,
         comments: []
-      }
+      };
       this.posts.unshift(postItem);
 
       // 投稿フォームのクリア
-      this.newPost = ''
-      this.newImage = ''
+      this.newPost = '';
+      this.newImage = '';
     },
     // 画像をData URI Schemeに変換
     onFileChange: function (e) {
@@ -90,7 +95,7 @@ let app = new Vue({
       };
       reader.readAsDataURL(files[0]);
     },
-    addCommentToPost: function(index, comment) {
+    addCommentToPost: function (index, comment) {
       this.posts[index].comments.push(comment);
     }
   }

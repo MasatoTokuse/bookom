@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bookom</title>
+        <link rel="stylesheet" href="../src/css/styles.css">
+    </head>
+    <body>
+        <div id="app" class="container">
+            <h1>Bookom</h1>
+            <form @submit.prevent="addPost">
+                <input type="text" v-model="newPost">
+                <input type="submit" value="投稿"><br>
+                <input type="file" name="image" @change="onFileChange" accept="image/*">
+            </form>
+            <ul>
+                <post-component 
+                    v-for="(post, index) in posts" 
+                    v-bind="post"
+                    :key="index" 
+                    :index="index"
+                    @add-comment="addCommentToPost"
+                ></post-component>
+            </ul>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="../src/js/main.js"></script>
+    </body>
+</html>

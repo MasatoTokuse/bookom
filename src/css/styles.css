@@ -14,10 +14,6 @@ body {
     padding: 16px 0;
 }
 
-#app li {
-    line-height: 1.5;
-}
-
 #app input[type="text"] {
     padding: 2px;
 }
@@ -42,6 +38,15 @@ textarea {
 }
 
 .accept-line {
-    white-space:pre-wrap; 
-    word-wrap:break-word;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.post {
+    margin-top: 50px;
+}
+
+.image {
+    width: 300px;
+    height: auto;
 }

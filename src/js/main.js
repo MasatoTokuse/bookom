@@ -10,6 +10,7 @@ let postComponent = Vue.extend({
     text: String,
     image: String,
     comments: Array,
+    likes: Number,
     created_at: String
   },
   data: function () {
@@ -23,7 +24,7 @@ let postComponent = Vue.extend({
       {{ created_at }}<br>\
       <img class="image" :src="image"><br>\
       <p class="accept-line">{{ text }}</p>\
-      <div class="like">♡</div>\
+      <div><span class="like" @click="countupLike">♡</span>{{ likes }}</div>\
       <div class="comments">\
         <ul>\
           <li v-for="comment in comments">\
@@ -52,6 +53,9 @@ let postComponent = Vue.extend({
 
       // 投稿フォームのクリア
       this.newComment = '';
+    },
+    countupLike: function () {
+      this.$emit('countup-like', this.index);
     }
   }
 });
@@ -78,6 +82,7 @@ let app = new Vue({
         text: 'コメント２',
         created_at: '2019/01/16 17:19:20'
       }],
+      likes: 0,
       created_at: '2019/01/16 15:19:20'
     }]
   },
@@ -97,6 +102,7 @@ let app = new Vue({
         text: this.newPost,
         image: this.newImage,
         comments: [],
+        likes: 0,
         created_at: getNowDateString()
       };
       // 新着順に表示するため、配列の先頭に追加する
@@ -118,6 +124,9 @@ let app = new Vue({
     addCommentToPost: function (index, comment) {
       comment.userID = this.userID;
       this.posts[index].comments.push(comment);
+    },
+    countupLike: function (index) {
+        this.posts[index].likes++;
     }
   }
 });

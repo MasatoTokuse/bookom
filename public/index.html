@@ -25,7 +25,7 @@
             </form>
             <ul>
                 <post-component v-for="(post, index) in posts" v-bind="post" :key="index" :index="index"
-                    @add-comment="addCommentToPost"></post-component>
+                    @add-comment="addCommentToPost" @countup-like="countupLike"></post-component>
             </ul>
         </div>
     </div>

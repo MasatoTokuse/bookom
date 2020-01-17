@@ -28,6 +28,8 @@ body {
 }
 
 textarea {
+    width: 500px;
+    height: 100px;
     padding: 2px;
     resize: none;
 }
@@ -52,4 +54,8 @@ textarea {
     margin-top: 10px;
     margin-bottom: 30px;
     cursor: pointer;
+}
+
+label {
+    width: 200px;
 }

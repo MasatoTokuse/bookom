@@ -81,7 +81,7 @@ let app = new Vue({
     // TODO:初期値を設定
     posts: [{
       userID: 'Tanaka',
-      text: 'Vue.js入門書の決定版! 初歩から実践までわかる!\n\nvue.jsを初歩から実践まで徹底的に解説。\n使いやすくかつ、プロダクションでも活躍するVue.jsをVue.jsコントリビューターの著者らが解説する\n一番わかりやすい入門書です。\n小規模な適用例やjQueryからの移行サンプルに加え、大規模開発を想定したアプリケーション開発も体験できます。\nVue.jsはGitHubで2017年最も人気のあったJavaScriptフレームワークに選ばれるなど大注目の技術です。',
+      text: '大変分かりやすく皆さんにオススメしたい一冊です。',
       image: img,
       comments: [{
         userID: 'Masato',
@@ -93,7 +93,7 @@ let app = new Vue({
         userID: 'Suzuki',
         text: '○○が分かりやすいですよね',
         likes: 3,
-        created_at: '2019/01/16 17:19:20'
+        created_at: '2019/01/18 10:19:20'
       }],
       likes: 5,
       created_at: '2019/01/16 15:19:20'
@@ -103,7 +103,7 @@ let app = new Vue({
       fromUserID: 'Masato',
       toWhat: NOTICE_ACTION_TO_POST,
       how: NOTICE_BY_LIKE,
-      target: 'Vue.js入門書の決定版! 初歩から実践...',
+      target: '大変分かりやすく皆さんにオスス...',
       isRead: false,
       created_at: '2019/01/17 20:19:20'
     }, {
@@ -111,9 +111,9 @@ let app = new Vue({
       fromUserID: 'Suzuki',
       toWhat: NOTICE_ACTION_TO_POST,
       how: NOTICE_BY_COMMENT,
-      target: 'Vue.js入門書の決定版! 初歩から実践...',
+      target: '大変分かりやすく皆さんにオスス...',
       isRead: false,
-      created_at: '2019/01/18 15:19:20'
+      created_at: '2019/01/18 10:19:20'
     }]
   },
   components: {

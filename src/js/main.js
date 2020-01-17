@@ -27,10 +27,11 @@ let postComponent = Vue.extend({
       <div><span class="like" @click="countupLike">♡</span>{{ likes }}</div>\
       <div class="comments">\
         <ul>\
-          <li v-for="comment in comments">\
+          <li v-for="(comment, indexComment) in comments">\
             <strong>{{ comment.userID }} </strong>\
             {{ comment.created_at }}<br>\
             <p class="accept-line">{{ comment.text }}</p>\
+            <div><span class="like" @click="countupCommentLike(indexComment)">♡</span>{{ comment.likes }}</div>\
           </li>\
         </ul>\
         <form @submit.prevent="addComment">\
@@ -47,6 +48,7 @@ let postComponent = Vue.extend({
       }
       let commentItem = {
         text: this.newComment,
+        likes: 0,
         created_at: getNowDateString()
       };
       this.$emit('add-comment', this.index, commentItem);
@@ -56,6 +58,9 @@ let postComponent = Vue.extend({
     },
     countupLike: function () {
       this.$emit('countup-like', this.index);
+    },
+    countupCommentLike: function (indexComment) {
+      this.$emit('countup-comment-like', this.index, indexComment);
     }
   }
 });
@@ -75,14 +80,16 @@ let app = new Vue({
       comments: [{
         userID: 'cat',
         text: 'コメント１',
+        likes: 4,
         created_at: '2019/01/16 16:19:20'
       },
       {
         userID: 'dog',
         text: 'コメント２',
+        likes: 3,
         created_at: '2019/01/16 17:19:20'
       }],
-      likes: 0,
+      likes: 5,
       created_at: '2019/01/16 15:19:20'
     }]
   },
@@ -126,7 +133,10 @@ let app = new Vue({
       this.posts[index].comments.push(comment);
     },
     countupLike: function (index) {
-        this.posts[index].likes++;
+      this.posts[index].likes++;
+    },
+    countupCommentLike: function (postIndex, commentIndex) {
+      this.posts[postIndex].comments[commentIndex].likes++;
     }
   }
 });

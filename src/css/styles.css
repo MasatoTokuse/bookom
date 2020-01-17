@@ -59,3 +59,13 @@ textarea {
 label {
     width: 200px;
 }
+
+.bell {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.notifications {
+    cursor: pointer;
+}

@@ -9,7 +9,14 @@
 
 <body>
     <div id="app" class="container">
-        <h1>Bookom(仮) <span v-if="isLogged">ようこそ {{ userID }} さん</sapn></h1>
+        <h1>
+            Bookom(仮) 
+            <span v-if="isLogged">
+                ようこそ {{ userID }} さん 
+                <img src="../assets/bell.jpg" class="bell" @click="notice">{{ noticeIsNotRead.length }}
+                <notifications group="top-right" class="notifications"></notifications>
+            </sapn>
+        </h1>
         <div class="login" v-if="!isLogged">
             <form @submit.prevent="login">
                 <div>
@@ -36,6 +43,14 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        window.vue = window.Vue;
+    </script>
+    <script type="text/javascript" src="https://unpkg.com/vue-notification"></script>
+    <script type="text/javascript">
+        window.vueNotification = window["vue-notification"].default;
+        Vue.use(vueNotification);
+    </script>
     <script src="../src/js/main.js"></script>
 </body>
 

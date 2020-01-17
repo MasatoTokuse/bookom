@@ -1,6 +1,6 @@
 'use strict'
 
-// TODO:削除 デバッグ用
+// サンプルデータ
 const img = 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0919/9784297100919.jpg';
 
 // 通知用
@@ -78,8 +78,25 @@ let app = new Vue({
     userID: '',
     newPost: '',
     newImage: '',
-    // TODO:初期値を設定
-    posts: [{
+    posts: [],
+    notices: []
+  },
+  watch: {
+    posts: {
+      handler: function () {
+        localStorage.setItem("posts", JSON.stringify(this.posts));
+      },
+      deep: true
+    },
+    notices: {
+      handler: function () {
+        localStorage.setItem("notices", JSON.stringify(this.notices));
+      },
+      deep: true
+    }
+  },
+  mounted: function () {
+    this.posts = JSON.parse(localStorage.getItem('posts')) || [{
       userID: 'Tanaka',
       text: '大変分かりやすく皆さんにオススメしたい一冊です。',
       image: img,
@@ -97,8 +114,9 @@ let app = new Vue({
       }],
       likes: 5,
       created_at: '2019/01/16 15:19:20'
-    }],
-    notices: [{
+    }];
+
+    this.notices = JSON.parse(localStorage.getItem('notices')) || [{
       toUserID: 'Tanaka',
       fromUserID: 'Masato',
       toWhat: NOTICE_ACTION_TO_POST,
@@ -114,7 +132,7 @@ let app = new Vue({
       target: '大変分かりやすく皆さんにオスス...',
       isRead: false,
       created_at: '2019/01/18 10:19:20'
-    }]
+    }];
   },
   components: {
     'post-component': postComponent

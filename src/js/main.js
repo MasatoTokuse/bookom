@@ -75,6 +75,7 @@ let app = new Vue({
   el: '#app',
   data: {
     isLogged: false,
+    // loginID
     userID: '',
     newPost: '',
     newImage: '',
@@ -172,12 +173,45 @@ let app = new Vue({
     addCommentToPost: function (index, comment) {
       comment.userID = this.userID;
       this.posts[index].comments.push(comment);
+      // 通知作成
+      let notice = {
+        toUserID: this.posts[index].userID,
+        fromUserID: this.userID,
+        toWhat: NOTICE_ACTION_TO_POST,
+        how: NOTICE_BY_COMMENT,
+        target: this.posts[index].text.slice(0,15) + '...\n',
+        isRead: false,
+        created_at: getNowDateString()
+      };
+      this.notices.unshift(notice);
     },
     countupLike: function (index) {
       this.posts[index].likes++;
+      // 通知作成
+      let notice = {
+        toUserID: this.posts[index].userID,
+        fromUserID: this.userID,
+        toWhat: NOTICE_ACTION_TO_POST,
+        how: NOTICE_BY_LIKE,
+        target: this.posts[index].text.slice(0,15) + '...\n',
+        isRead: false,
+        created_at: getNowDateString()
+      };
+      this.notices.unshift(notice);
     },
     countupCommentLike: function (postIndex, commentIndex) {
       this.posts[postIndex].comments[commentIndex].likes++;
+      // 通知作成
+      let notice = {
+        toUserID: this.posts[postIndex].comments[commentIndex].userID,
+        fromUserID: this.userID,
+        toWhat: NOTICE_ACTION_TO_COMMENT,
+        how: NOTICE_BY_LIKE,
+        target: this.posts[postIndex].comments[commentIndex].text.slice(0,15) + '...\n',
+        isRead: false,
+        created_at: getNowDateString()
+      };
+      this.notices.unshift(notice);
     },
     notice: function () {
       this.noticeIsNotRead.forEach(notice => {
